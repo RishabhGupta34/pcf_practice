@@ -1,8 +1,10 @@
+---
 instance_limits:
-    min: 1
-    max: 2
-  rules:
-    - rule_type: "cpu"
-      threshold:
-        min: 10
-        max: 20
+  min: 1
+  max: 2
+rules:
+- rule_type: "http_latency"
+  rule_sub_type: "avg_99th"
+  threshold:
+    min: 500
+    max: 1000
