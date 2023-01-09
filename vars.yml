@@ -1,3 +1,3 @@
-APP_MEMORY: 350M
-INSTANCES: 2
-APP_NAME: rishabh_basic_app
+APP_MEMORY: <+secrets.getValue("pcf_name")>
+INSTANCES: 1
+APP_NAME: rishabh_bg
