@@ -1,4 +1,4 @@
-applications:
+
 - name: ((APP_NAME))
   instances: ((INSTANCES))
   memory: ((APP_MEMORY))
