@@ -1,5 +1,5 @@
 applications:
-- name: rishabh_git
+- nme: rishabh_git
   instances: ((INSTANCES))
   memory: ((APP_MEMORY))
   routes:
