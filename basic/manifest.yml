@@ -1,8 +1,10 @@
 applications:
 - name: rishabh_git
-@  instances: ((INSTANCES))
+  instances: ((INSTANCES))
   memory: ((APP_MEMORY))
   routes:
     - route: rishabh_basic_app.apps.pcf-harness.com
   services:
     - myautoscaler
+  env:
+    mongo: @abc
