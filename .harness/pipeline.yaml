@@ -68,34 +68,6 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
-              - step:
-                  type: ShellScript
-                  name: Shell Script_2
-                  identifier: ShellScript_2
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: |
-                          echo "instance.name"
-                          echo <+instance.name>
-                          echo "instance.hostName"
-                          echo <+instance.hostName>
-                          echo "instance.host.instanceName"
-                          echo <+instance.host.instanceName>
-                          echo "instance.host.properties.version"
-                          echo <+instance.host.properties.version>
-                          echo "instance.host.properties.url"
-                          echo <+instance.host.properties.url>
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-                  failureStrategies: []
-                  strategy:
-                    repeat:
-                      items: <+stage.output.hosts>
             rollbackSteps: []
           environment:
             environmentRef: E1
