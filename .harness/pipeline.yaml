@@ -1,0 +1,60 @@
+pipeline:
+  name: git_pipeline
+  identifier: git_pipeline
+  projectIdentifier: rishabhtest
+  orgIdentifier: deafult
+  tags: {}
+  stages:
+    - stage:
+        name: deploy
+        identifier: deploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: CustomDeployment
+          customDeploymentRef:
+            templateRef: DT
+            versionLabel: V1
+          service:
+            serviceRef: dt
+            serviceInputs:
+              serviceDefinition:
+                type: CustomDeployment
+                spec:
+                  artifacts:
+                    primary:
+                      type: DockerRegistry
+                      spec:
+                        tag: <+input>
+          execution:
+            steps:
+              - step:
+                  name: Fetch Instances
+                  identifier: fetchInstances
+                  type: FetchInstanceScript
+                  timeout: 10m
+                  spec: {}
+            rollbackSteps: []
+          environment:
+            environmentRef: E1
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: TEST
+                inputs:
+                  identifier: TEST
+                  type: CustomDeployment
+                  spec:
+                    variables:
+                      - name: gcp
+                        type: Connector
+                        value: <+input>
+                      - name: gitlab
+                        type: Connector
+                        value: <+input>
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
