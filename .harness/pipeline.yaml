@@ -34,34 +34,6 @@ pipeline:
                   type: FetchInstanceScript
                   timeout: 10m
                   spec: {}
-              - step:
-                  type: ShellScript
-                  name: Shell Script_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: |-
-                          echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[1].instanceId"
-                          echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[1].instanceId>
-                          echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[1].properties.instancename"
-                          echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[1].properties.instancename>
-
-                          echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId"
-                          echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId>
-                          echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename"
-                          echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename>
-
-                          echo "secrets.getValue(infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier)"
-                          echo <+secrets.getValue(<+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>)>
-                          echo "infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier"
-                          echo <+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
             rollbackSteps: []
           environment:
             environmentRef: E1
