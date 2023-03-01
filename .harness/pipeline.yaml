@@ -45,6 +45,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
+                          echo "new-branch"
                           echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].instanceId"
                           echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].instanceId>
                           echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].properties.instancename"
