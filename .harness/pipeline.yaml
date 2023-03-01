@@ -51,7 +51,7 @@ pipeline:
                           echo <+pipeline.stages.dt.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].properties.instancename>
 
                           echo "secrets.getValue(infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier)"
-                          echo <+secrets.getValue(<+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>)
+                          echo <+secrets.getValue(<+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>)>
                           echo "infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier"
                           echo <+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>
                     environmentVariables: []
