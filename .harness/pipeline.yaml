@@ -76,6 +76,8 @@ pipeline:
                           echo <+instance.host.instanceName>
                           echo "instance.host.properties.version"
                           echo <+instance.host.properties.version>
+                          echo "instance.host.properties.url"
+                          echo <+instance.host.properties.url>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
