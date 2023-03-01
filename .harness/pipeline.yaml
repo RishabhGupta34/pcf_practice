@@ -34,6 +34,46 @@ pipeline:
                   type: FetchInstanceScript
                   timeout: 10m
                   spec: {}
+              - step:
+                  type: ShellScript
+                  name: Shell Script_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "pipeline.stages.dt.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].instanceId"
+                          echo <+pipeline.stages.dt.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].instanceId>
+                          echo "pipeline.stages.dt.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].properties.instancename"
+                          echo <+pipeline.stages.dt.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[0].properties.instancename>
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: Shell Script_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          echo "instance.name"
+                          echo <+instance.name>
+                          echo "instance.hostName"
+                          echo <+instance.hostName>
+                          echo "instance.host.instanceName"
+                          echo <+instance.host.instanceName>
+                          echo "instance.host.properties.version"
+                          echo <+instance.host.properties.version>
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
             rollbackSteps: []
           environment:
             environmentRef: E1
