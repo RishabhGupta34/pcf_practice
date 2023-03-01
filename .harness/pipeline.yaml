@@ -74,6 +74,10 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+                  failureStrategies: []
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
             rollbackSteps: []
           environment:
             environmentRef: E1
