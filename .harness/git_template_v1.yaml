@@ -1,0 +1,85 @@
+template:
+  name: git_template
+  type: Pipeline
+  projectIdentifier: rishabhtest
+  orgIdentifier: deafult
+  spec:
+    stages:
+      - stage:
+          name: deploy
+          identifier: deploy
+          description: ""
+          type: Deployment
+          spec:
+            deploymentType: CustomDeployment
+            customDeploymentRef:
+              templateRef: DT
+              versionLabel: V1
+            service:
+              serviceRef: dt
+              serviceInputs:
+                serviceDefinition:
+                  type: CustomDeployment
+                  spec:
+                    artifacts:
+                      primary:
+                        type: DockerRegistry
+                        spec:
+                          tag: <+input>
+            execution:
+              steps:
+                - step:
+                    name: Fetch Instances
+                    identifier: fetchInstances
+                    type: FetchInstanceScript
+                    timeout: 10m
+                    spec: {}
+                - step:
+                    type: ShellScript
+                    name: Shell Script_1
+                    identifier: ShellScript_1
+                    spec:
+                      shell: Bash
+                      onDelegate: true
+                      source:
+                        type: Inline
+                        spec:
+                          script: |-
+                            echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId"
+                            echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId>
+                            echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename"
+                            echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename>
+
+                            echo "secrets.getValue(infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier)"
+                            echo <+secrets.getValue(<+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>)>
+                            echo "infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier"
+                            echo <+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>
+                      environmentVariables: []
+                      outputVariables: []
+                    timeout: 10m
+              rollbackSteps: []
+            environment:
+              environmentRef: E1
+              deployToAll: false
+              infrastructureDefinitions:
+                - identifier: TEST
+                  inputs:
+                    identifier: TEST
+                    type: CustomDeployment
+                    spec:
+                      variables:
+                        - name: gcp
+                          type: Connector
+                          value: <+input>
+                        - name: gitlab
+                          type: Connector
+                          value: <+input>
+          tags: {}
+          failureStrategies:
+            - onFailure:
+                errors:
+                  - AllErrors
+                action:
+                  type: StageRollback
+  identifier: git_template
+  versionLabel: v1
