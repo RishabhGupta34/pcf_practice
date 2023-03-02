@@ -52,7 +52,6 @@ template:
                             echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId"
                             echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].instanceId>
                             echo "pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename"
-                            echo <+pipeline.stages.deploy.spec.execution.steps.fetchInstances.deploymentInfoOutcome.serverInstanceInfoList[2].properties.instancename>
 
                             echo "secrets.getValue(infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier)"
                             echo <+secrets.getValue(<+infra.variables.gitlab.spec.authentication.spec.spec.tokenRef.identifier>)>
