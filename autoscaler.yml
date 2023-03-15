@@ -1,7 +1,7 @@
 ---
 instance_limits:
   min: 1
-  max: 2
+  max: 3
 rules:
 - rule_type: "http_latency"
   rule_sub_type: "avg_99th"
