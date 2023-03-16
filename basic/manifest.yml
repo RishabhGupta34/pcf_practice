@@ -6,5 +6,3 @@ applications:
     - route: rishabh_basic_app.apps.pcf-harness.com
   services:
     - myautoscaler
-  env:
-    mongo: @abc
